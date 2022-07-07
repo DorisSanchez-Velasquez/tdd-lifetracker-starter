@@ -5,6 +5,7 @@ class Nutrition
 {
     static async createNutrition({user, nutrition})
     {
+        console.log(user)
         //Create a new nutrition instance in the database
         const requiredFields = ["name", "category", "calories", "imageUrl", "quantity"]
         requiredFields.forEach((field) => {
@@ -37,8 +38,10 @@ class Nutrition
                        nutrition.category,
                        nutrition.calories,
                        nutrition.image_url,
-                       nutrition.quantity
+                       nutrition.quantity,
+                       users.email
                 FROM nutrition
+                    LEFT JOIN users ON users.id = nutrition.user_id
                 WHERE nutrition.id = $1
             `, [nutritionId]
         )
@@ -53,8 +56,9 @@ class Nutrition
 
 
 
-    static async listNutritionForUser()
+    static async listNutritionForUser({user})
     {
+
         //list all nutrition instances 
         const results = await db.query(
             `
@@ -63,10 +67,13 @@ class Nutrition
                        nutrition.category,
                        nutrition.calories,
                        nutrition.image_url,
-                       nutrition.quantity
+                       nutrition.quantity,
+                       users.email
                 FROM nutrition
+                    LEFT JOIN users ON users.id = nutrition.user_id
+                WHERE users.email = $1
                 ORDER BY nutrition.created_at DESC
-            `
+            `, [user.email]
         )
         return results.rows
     }
