@@ -5,7 +5,8 @@ class Nutrition
 {
     static async createNutrition({user, nutrition})
     {
-        console.log(user)
+        // console.log(user)
+        console.log("create function", nutrition)
         //Create a new nutrition instance in the database
         const requiredFields = ["name", "category", "calories", "imageUrl", "quantity"]
         requiredFields.forEach((field) => {
@@ -72,7 +73,7 @@ class Nutrition
                 FROM nutrition
                     LEFT JOIN users ON users.id = nutrition.user_id
                 WHERE users.email = $1
-                ORDER BY nutrition.created_at DESC
+                ORDER BY nutrition.created_at ASC
             `, [user.email]
         )
         return results.rows

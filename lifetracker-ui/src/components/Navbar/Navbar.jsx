@@ -9,7 +9,9 @@ export default function Navbar(props) {
     <nav className="navbar">
       <Logo />
       <NavLinks userLoggedIn={props.userLoggedIn}
-                setUserLoggedIn={props.setUserLoggedIn}/>
+                setUserLoggedIn={props.setUserLoggedIn}
+                user = {props.user}
+                setUser = {props.setUser}/>
     </nav>
   )
 }

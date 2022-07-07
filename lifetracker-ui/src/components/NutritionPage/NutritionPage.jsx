@@ -6,9 +6,6 @@ import NutritionDetail from "../NutritionPage/NutritionDetail"
 import NotFound from "../NotFound/NotFound"
 
 export default function NutritionPage(props) {
-
-  if(props.userLoggedIn)
-  {
   return (
     <div className="nutrition-page">
       <h1>Nutrition Page</h1>
@@ -20,11 +17,5 @@ export default function NutritionPage(props) {
           {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
     </div>
-  )}
-  else
-  {
-    return (
-      <h1> ACCESS FORBIDDEN </h1>
-    )
-  }
+  )
 }

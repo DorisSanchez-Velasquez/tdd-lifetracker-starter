@@ -9,7 +9,7 @@ export default function RegistrationPage(props) {
   return (
     <div className="registration-page">
         {props.userLoggedIn ? (navigate("/activity")) : 
-        <RegistrationForm form={props.form} setForm={props.setForm} error={props.error} setError={props.setError}/>}
+        <RegistrationForm form={props.form} setForm={props.setForm} error={props.error} setError={props.setError} user={props.user} setUser={props.setUser}/>}
     </div>
   )
 }

@@ -47,6 +47,7 @@ class User
     //METHOD FOR SUCCESSFUL REGISTER CREDENTIALS
     static async register(credentials)
     {
+        console.log(credentials)
         //ERROR HANDLING FOR REQUIRED FIELDS AND PROPER EMAIL AND EXISTENCE OF EMAIL
         const requiredFields = ["username", "password", "firstName", "lastName", "email"]
         requiredFields.forEach(field => {

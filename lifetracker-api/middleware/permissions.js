@@ -5,7 +5,7 @@ const {NadRequestError, ForbiddenError} = require("../utils/errors")
 const authUserOwnsNutrition = async (req,res,next) => {
     try{
         const {user} = res.locals
-        const {nutritionId} = reqs.params
+        const {nutritionId} = req.params
         const nutrition = await Nutrition.fetchNutritionById(nutritionId)
 
         if(nutrition.userEmail !== user.email)

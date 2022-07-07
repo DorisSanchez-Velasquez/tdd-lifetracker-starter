@@ -8,7 +8,9 @@ export default function LoginPage(props) {
         <LoginForm userLoggedIn={props.userLoggedIn}
                   setUserLoggedIn={props.setUserLoggedIn}
                   error={props.error}
-                  setError={props.setError}/>
+                  setError={props.setError}
+                  user = {props.user}
+                  setUser = {props.setUser}/>
     </div>
   )
 }
