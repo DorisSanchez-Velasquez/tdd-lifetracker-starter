@@ -12,9 +12,9 @@ export const AuthContextProvider = ({children}) => {
         const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError}
 
         return (
-            <AuthContextProvider value={authValue}>
+            <AuthContext.Provider value={authValue}>
                 <>{children}</>
-            </AuthContextProvider>
+            </AuthContext.Provider>
         )
 }
 

@@ -8,7 +8,7 @@ export default function NutritionCard(props) {
     <div className="nutrition-card">
         <img src={props.nutrition.image_url} className="nutrition-image"></img>
         <div className="card-text">
-            <h3 className="nutrition-name">{props.nutrition.name.toUpperCase()}</h3>
+            <h3 className="nutrition-name">{props.nutrition.name}</h3>
             <div className="card-info">
                 <div id="card-text-group">
                 <h4 className="nutrition-calories">Calories: {props.nutrition.calories}</h4>

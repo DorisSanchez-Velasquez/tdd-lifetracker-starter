@@ -36,7 +36,7 @@ export default function App() {
     password: "",
     passwordConfirm: ""
   })
-  const [totalCaloriesPerDay, setTotalCaloriesPerDar] = useState([])
+  const [totalCaloriesPerDay, setTotalCaloriesPerDay] = useState([])
   const [avgCaloriesPerCategory, setAvgCaloriesPerCategory] = useState([])
 
   //USE EFFECT HOOK FOR SETTING UP THE USER
@@ -98,7 +98,9 @@ export default function App() {
                       <Route path="/activity" element={user?.email ? (<ActivityPage userLoggedIn={userLoggedIn}
                                                                      setUserLoggedIn={setUserLoggedIn}
                                                                      totalCaloriesPerDay={totalCaloriesPerDay}
-                                                                     avgCaloriesPerCategory={avgCaloriesPerCategory}/>) : (<AccessForbidden/>)}></Route>
+                                                                     avgCaloriesPerCategory={avgCaloriesPerCategory}
+                                                                     setTotalCaloriesPerDay={setTotalCaloriesPerDay}
+                                                                     setAvgCaloriesPerCategory={setAvgCaloriesPerCategory}/>) : (<AccessForbidden/>)}></Route>
 
                       <Route path="/nutrition/*" element={user?.email ? (<NutritionPage userLoggedIn={userLoggedIn}
                                                                          setUserLoggedIn={setUserLoggedIn}/>) : (<AccessForbidden/>)}></Route>

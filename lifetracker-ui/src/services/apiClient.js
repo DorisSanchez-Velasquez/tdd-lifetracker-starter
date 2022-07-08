@@ -68,6 +68,11 @@ class ApiClient
     {
         return await this.request({endpoint: `nutrition/${nutritionId}`, method: `GET`, data: nutritionId})
     }
+
+    async getAvgAndTotalCalories()
+    {
+        return await this.request({endpoint: `activity/`, method: `GET`, data: null})
+    }
 }
 
 export default new ApiClient("http://localhost:3001")
