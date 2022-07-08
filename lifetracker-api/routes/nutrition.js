@@ -23,10 +23,8 @@ router.get("/", security.requireAuthenticatedUser, async (req,res,next) => {
 router.post("/create", security.requireAuthenticatedUser, async (req,res,next) => {
     try
     {
-        //list all nutrition instances
+        //create a nutrition instances
         const {user} = res.locals
-        console.log("request", user)
-        console.log("request body", req.body)
         const nutrition = await Nutrition.createNutrition({user, nutrition: req.body})
         return res.status(201).json({nutrition})
     }

@@ -23,11 +23,6 @@ class ApiClient
 
         }
 
-        // if(this.token)
-        // {
-        //     headers("Authorization") = `Bearer ${this.token}`
-        // }
-
         try{
             const res = await axios({url, method, data, headers})
             return({data: res.data, error: null})
