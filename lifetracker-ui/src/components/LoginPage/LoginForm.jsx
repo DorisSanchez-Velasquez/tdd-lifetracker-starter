@@ -50,10 +50,11 @@ export default function LoginForm(props) {
         const {data, error} = await apiClient.loginUser({email: form.email, password: form.password})
         if(error)
         {
-               setErrors((err) => ({...err, form: error}))
+               setErrors((err) => ({...err, form: "Invalid email/password combination"}))
         }
         if(data?.user)
         {
+                console.log("entered")
                props.setUser(data.user)
                apiClient.setToken(data.token)
         }

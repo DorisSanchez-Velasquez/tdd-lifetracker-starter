@@ -40,6 +40,7 @@ class Nutrition
                        nutrition.calories,
                        nutrition.image_url,
                        nutrition.quantity,
+                       nutrition.created_at,
                        users.email
                 FROM nutrition
                     LEFT JOIN users ON users.id = nutrition.user_id
@@ -69,6 +70,7 @@ class Nutrition
                        nutrition.calories,
                        nutrition.image_url,
                        nutrition.quantity,
+                       nutrition.created_at,
                        users.email
                 FROM nutrition
                     LEFT JOIN users ON users.id = nutrition.user_id

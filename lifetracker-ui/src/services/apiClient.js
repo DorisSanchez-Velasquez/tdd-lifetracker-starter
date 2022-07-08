@@ -18,13 +18,15 @@ class ApiClient
     {
         const url = `${this.remoteHostUrl}/${endpoint}`
         const headers = {
-            "Content-Type" : "application/json"
+            "Content-Type" : "application/json",
+            Authorization: this.token ? `Bearer ${this.token}` : "",
+
         }
 
-        if(this.token)
-        {
-            headers("Authorization") = `Bearer ${this.token}`
-        }
+        // if(this.token)
+        // {
+        //     headers("Authorization") = `Bearer ${this.token}`
+        // }
 
         try{
             const res = await axios({url, method, data, headers})
@@ -55,6 +57,21 @@ class ApiClient
     {
         this.setToken(null)
         localStorage.setItem(this.token, "")
+    }
+
+    async getNutritionList()
+    {
+        return await this.request({endpoint: `nutrition/`, method: `GET`, data: null})
+    }
+
+    async createNutrition(nutrition)
+    {
+        return await this.request({endpoint: `nutrition/create`, method: `POST`, data: nutrition})
+    }
+
+    async getNutritionById(nutritionId)
+    {
+        return await this.request({endpoint: `nutrition/${nutritionId}`, method: `GET`, data: nutritionId})
     }
 }
 

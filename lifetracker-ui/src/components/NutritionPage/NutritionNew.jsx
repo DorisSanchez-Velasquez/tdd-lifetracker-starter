@@ -1,9 +1,10 @@
 import * as React from "react"
+import NutritionForm from "../NutritionPage/NutritionForm"
 
 export default function NutritionNew() {
   return (
-    <div>
-        <h1>Nutrition New</h1>
+    <div className="nutrition-new">
+        <NutritionForm />
     </div>
   )
 }
