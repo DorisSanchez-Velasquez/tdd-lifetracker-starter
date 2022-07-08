@@ -34,9 +34,9 @@ export default function NutritionOverview(props) {
 
   return (
     <div className="nutrition-overview">
-      <h1>Nutrition Overview</h1>
-      <Link to="/nutrition/create"><button>Record Nutrition</button></Link>
-      {!isLoading ? (<NutritionFeed nutrition={nutrition}/>) : (<Loading />)}
+      <h1 className="nutrition-title">Nutrition Overview</h1>
+      <Link to="/nutrition/create"><button className="record-nutrition">Record Nutrition</button></Link>
+      {!isLoading ? (<NutritionFeed nutrition={nutrition} errors={errors}/>) : (<Loading />)}
     </div>
   )
 }

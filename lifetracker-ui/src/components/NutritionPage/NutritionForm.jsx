@@ -2,6 +2,7 @@ import * as React from "react"
 import {useState} from "react"
 import { useNavigate } from "react-router-dom"
 import apiClient from "../../services/apiClient"
+import "../NutritionPage/Nutrition.css"
 
 export default function NutritionForm() {
     const [form, setForm] = useState({})

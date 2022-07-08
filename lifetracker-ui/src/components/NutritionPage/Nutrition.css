@@ -1,4 +1,103 @@
+.nutrition-page
+{
+    align-items: center;
+}
+
 .nutrition-card
 {
-    background-color: royalblue
+    background-color: #000000
+}
+
+.nutrition-feed
+{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-evenly;
+    grid-gap: 5px;
+    grid-auto-rows: minmax(125px, auto);
+}
+
+.nutrition-card
+{
+    width: 400px;
+    height: 225px;
+    margin-bottom: 20px;
+    position: relative;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px
+}
+
+.nutrition-title, .record-nutrition
+{
+    text-align: center;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nutrition-links
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.card-text
+{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.nutrition-image
+{
+    opacity: 1;
+    display: block;
+    width: 400px;
+    height: 225px;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: 10px
+}
+
+.nutrition-card:hover .nutrition-image {
+    opacity: 0.3;
+  }
+  
+  .nutrition-card:hover .card-text {
+    opacity: 1;
+  }
+
+.nutrition-name
+{
+    font-size: 40px;
+    display: inline;
+}
+
+.card-info
+{
+    display: flex;
+    align-items: center;
+}
+
+#card-text-group
+{
+    margin-right: 40px
+}
+
+.record-nutrition
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #13A8FE;
+    padding: 10px 15px;
+    color: #FFFFFF;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none
 }
