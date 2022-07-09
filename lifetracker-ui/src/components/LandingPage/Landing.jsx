@@ -1,5 +1,9 @@
 import * as React from "react"
 import "../LandingPage/Landing.css"
+import fitnessImg from "../../../src/fitness.png"
+import foodImg from "../../../src/food.png"
+import restImg from "../../../src/rest.png"
+import plannerImg from "../../../src/planner.png"
 
 export default function Landing() {
   return (
@@ -11,10 +15,10 @@ export default function Landing() {
                 <h1 className="title">Life Tracker</h1>
                 <p className="cta"> Helping you take back control of your world </p>
                 <div className="icon-row">
-                      <img src="../src/fitness.png" className="icons"/>
-                      <img src="../src/food.png" className="icons"/>
-                      <img src="../src/rest.png" className="icons"/>
-                      <img src="../src/planner.png" className="icons"/>
+                      <img src={fitnessImg} className="icons"/>
+                      <img src={foodImg} className="icons"/>
+                      <img src={restImg} className="icons"/>
+                      <img src={plannerImg} className="icons"/>
                 </div>
             </div>
         </div>

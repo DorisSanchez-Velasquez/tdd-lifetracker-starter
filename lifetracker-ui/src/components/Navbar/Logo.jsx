@@ -1,10 +1,11 @@
 import * as React from "react"
 import {Link} from "react-router-dom"
 import "../Navbar/Navbar.css"
+import healthLogo from "../../../src/healthLogo.png"
 
 export default function Logo()
 {
     return(
-              <Link to="/" className="logo"><img src="http://codepath-lifetracker.surge.sh/static/media/codepath.70a9a31f.svg" className="logo"/></Link>
+              <Link to="/" className="logo"><img src={healthLogo} className="logo"/></Link>
     )
 }
