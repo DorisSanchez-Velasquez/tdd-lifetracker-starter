@@ -1,14 +1,17 @@
 const express = require('express')
 const Nutrition = require('../models/nutrition')
 const security = require('../middleware/security')
+const permissions = require('../middleware/permissions')
 const router = express.Router()
 
 
-router.get("/", async (req,res,next) => {
+router.get("/", security.requireAuthenticatedUser, async (req,res,next) => {
     try
     {
         //list all nutrition instances
-        const nutrition = await Nutrition.listNutritionForUser()
+        const {user} = res.locals
+        console.log(user)
+        const nutrition = await Nutrition.listNutritionForUser({user})
         return res.status(200).json({nutrition})
     }
     catch(error)
@@ -17,10 +20,10 @@ router.get("/", async (req,res,next) => {
     }
 })
 
-router.post("/", security.requireAuthenticatedUser, async (req,res,next) => {
+router.post("/create", security.requireAuthenticatedUser, async (req,res,next) => {
     try
     {
-        //list all nutrition instances
+        //create a nutrition instances
         const {user} = res.locals
         const nutrition = await Nutrition.createNutrition({user, nutrition: req.body})
         return res.status(201).json({nutrition})
@@ -31,7 +34,7 @@ router.post("/", security.requireAuthenticatedUser, async (req,res,next) => {
     }
 })
 
-router.get("/:nutritionId", async (req,res,next) => {
+router.get("/:nutritionId", security.requireAuthenticatedUser, async (req,res,next) => {
     try
     {
         //fetch nutrition by id

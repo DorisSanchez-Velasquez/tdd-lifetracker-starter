@@ -1,10 +1,35 @@
-.category
+
+
+.summary-stat
 {
+    display:inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+    background-image: linear-gradient(to bottom right, #B537F2, #3CB9FC);
     width: 400px;
     height: 200px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid #FFFFFF
 }
 
-.per-category
+.secondary-statistic
+{
+    font-size: 25px;
+    text-align: center
+}
+
+.primary-statistics, .label
+{
+    text-align: center
+}
+
+.primary-statistics
+{
+    font-size: 30px
+}
+
+.stats-info
 {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -13,44 +38,12 @@
     grid-auto-rows: minmax(125px, auto);
 }
 
+#page-title, #title
+{
+    text-align:center
+}
+
 #title
 {
-    font-size: 25px;
-    margin-left: 10px;
-}
-
-#stats
-{
-    font-size: 40px;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
-#exercise
-{
-    background-color: #FFA300;
-}
-
-#sleep
-{
-    background-color: #CF0060;
-}
-
-#calories
-{
-    background-color: #13A8FE;
-}
-#max-calories
-{
-    background-color: #00c573;
-}
-
-#avg-exercise
-{
-    background-color: #c700da
-}
-
-#max-sleep
-{
-    background-color: #fe1313;
+    font-size: 30px
 }
