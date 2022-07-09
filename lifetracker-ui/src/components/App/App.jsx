@@ -13,20 +13,20 @@ import {useState, useEffect} from "react"
 import apiClient from "../../services/apiClient"
 import {AuthContextProvider, useAuthContext} from "../../contexts/auth"
 
-//  export default function AppContainer()
-//  {
-//    return(
-//      <AuthContextProvider>
-//          <App />
-//      </AuthContextProvider>
-//    )
-//  }
+  export default function AppContainer()
+  {
+    return(
+      <AuthContextProvider>
+          <App />
+      </AuthContextProvider>
+    )
+  }
 
-export default function App() {
+function App() {
   //STATE VARIABLES
   const [userLoggedIn, setUserLoggedIn] = useState(false)
   const [isFetching, setIsFetching] = useState()
-  const [user, setUser] = useState({})
+  const {user, setUser} = useAuthContext()
   const[error, setError] = useState("")
   const [form, setForm] = useState({
     email: "",
@@ -82,9 +82,7 @@ export default function App() {
                       <Route path="/login" element={<LoginPage userLoggedIn={userLoggedIn}
                                                                setUserLoggedIn={setUserLoggedIn}
                                                                error={error}
-                                                               setError={setError}
-                                                               user = {user}
-                                                               setUser = {setUser}/>}></Route>
+                                                               setError={setError}/>}></Route>
 
                       <Route path="/register" element={<RegistrationPage form={form} 
                                                                          setForm={setForm}

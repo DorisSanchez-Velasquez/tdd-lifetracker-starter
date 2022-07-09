@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import apiClient from "../../services/apiClient"
 import {useState, useEffect} from "react"
+import {useAuthContext} from "../../contexts/auth"
 
 export default function LoginForm(props) {
+    const {user, setUser} = useAuthContext()
     //VARIABLES
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
@@ -17,11 +19,11 @@ export default function LoginForm(props) {
 
     //USE EFFECT HOOK
     useEffect(() => {
-    if(props.user?.email)
-    {
-        navigate("/activity")
-    }
-}, [props.user, navigate])
+        if(user?.email)
+        {
+            navigate("/activity")
+        }
+    }, [user, navigate])
 
 
 
@@ -55,20 +57,10 @@ export default function LoginForm(props) {
         if(data?.user)
         {
                 console.log("entered")
-               props.setUser(data.user)
+               setUser(data.user)
                apiClient.setToken(data.token)
         }
         setIsProcessing(false)
-        // evt.preventDefault();
-        // props.setError("")
-        // const response = await axios.post("http://localhost:3001/auth/login", {email: loginForm.email, password: loginForm.password})
-        // .then((response) => {
-        //     props.setUserLoggedIn(true)
-        //     navigate("/activity")
-        // })
-        // .catch((error) => {
-        //     props.setError(error)
-        // })
     }
 
 
