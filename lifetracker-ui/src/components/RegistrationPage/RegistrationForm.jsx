@@ -1,27 +1,24 @@
 import * as React from "react"
 import {useState, useEffect} from "react"
-import axios from "axios"
 import apiClient from "../../services/apiClient"
+import {useAuthContext} from "../../contexts/auth"
 import { useNavigate } from "react-router-dom";
 
 export default function RegistrationForm(props) {       
   //VARIABLES
   const navigate = useNavigate()
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [errors, setErrors] = useState({});
-  const [form, setForm] = useState({
-       email: "",
-       password: "",
-       passwordConfirm: ""
-  })
+  const {user, setUser} = useAuthContext()
+  const {isProcessing, setIsProcessing} = useAuthContext()
+  const {registerForm, setRegisterForm} = useAuthContext()
+  const {errors, setErrors} = useAuthContext()
 
   //USE EFFECT HOOK
   useEffect(() => {
-       if(props.user?.email)
+       if(user?.email)
        {
            navigate("/login")
        }
-  }, [props.user, navigate])
+  }, [user, navigate])
 
   //FUNCTION FOR WHEN A USER IS INPUTTING INFORMATION
   function handleOnChange(evt)
@@ -38,30 +35,10 @@ export default function RegistrationForm(props) {
               }
        }
 
-       // if(evt.target.name === "password")
-       // {
-       //        if(props.form.passwordConfirm && props.form.passwordConfirm !== evt.target.value)
-       //        {
-       //               props.setError("Passwords do not match")
-       //        }
-       //        else
-       //        {
-       //               props.setError("")
-       //        }
-       // }
-
        if(evt.target.name === "passwordConfirm")
        {
-              // if(props.form.password && props.form.password !== evt.target.value)
-              // {
-              //        props.setError("Passwords do not match")
-              // }
-              // else
-              // {
-              //        props.setError("")
-              // }
 
-              if(evt.target.value !== form.password)
+              if(evt.target.value !== registerForm.password)
               {
                      setErrors((err) => ({...err, passwordConfirm: "Passwords do not match!"}))
               }
@@ -72,8 +49,7 @@ export default function RegistrationForm(props) {
        }
 
 
-       setForm((formInput) => ({...formInput, [evt.target.name]: evt.target.value}))
-       console.log(form)
+       setRegisterForm((formInput) => ({...formInput, [evt.target.name]: evt.target.value}))
   }
 
   //FUNCTION FOR WHEN A USER SUBMITS FORM
@@ -82,7 +58,7 @@ export default function RegistrationForm(props) {
        setIsProcessing(true)
        setErrors((err) => ({...err, form: null}))
 
-       if(form.passwordConfirm !== form.password)
+       if(registerForm.passwordConfirm !== registerForm.password)
        {
               setErrors((err) => ({...err, passwordConfirm: "Passwords do not match!"}))
               setIsProcessing(false)
@@ -93,41 +69,17 @@ export default function RegistrationForm(props) {
               setErrors((err) => ({...err, passwordConfirm: null}))
        }
 
-       const {data, error} = await apiClient.registerUser({username: form.username, password: form.password, firstName: form.firstName, lastName: form.lastName, email: form.email})
+       const {data, error} = await apiClient.registerUser({username: registerForm.username, password: registerForm.password, firstName: registerForm.firstName, lastName: registerForm.lastName, email: registerForm.email})
        if(error)
        {
               setErrors((err) => ({...err, form: error}))
        }
        if(data?.user)
        {
-              props.setUser(data.user)
+              setUser(data.user)
               apiClient.setToken(data.token)
        }
        setIsProcessing(false)
-       // if(props.form.passwordConfirm !== props.form.password)
-       // {
-       //        props.setError("Passwords do not match! Try again!")
-       // }
-       // else
-       // {
-       //        props.setError("")
-       // }
-
-       // evt.preventDefault();
-       // const response = await axios.post("http://localhost:3001/auth/register", {
-       //        email: props.form.email,
-       //        username: props.form.username,
-       //        firstName: props.form.firstName,
-       //        lastName: props.form.lastName,
-       //        password: props.form.password,
-       // })
-       // .then((response) => {
-       //        navigate("/login")
-       // })
-       // .catch((error) => {
-       //        props.setError("Invalid Registration Form! Try Again!")
-       // })
-       
   }
 
   return (
@@ -137,6 +89,7 @@ export default function RegistrationForm(props) {
         <h4>{errors.form}</h4>
 
         <h3>Email</h3>
+        <h4>{errors.email}</h4>
         <input className="form-input"
                name="email"
                type="email"
@@ -165,6 +118,7 @@ export default function RegistrationForm(props) {
                onChange = {(evt) => handleOnChange(evt)}></input>
 
         <h3>Password</h3>
+        <h4>{errors.passwordConfirm}</h4>
         <input className="form-input"
                name="password"
                type="password"

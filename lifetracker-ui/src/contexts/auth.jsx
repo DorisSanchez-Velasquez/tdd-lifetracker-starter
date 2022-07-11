@@ -7,9 +7,18 @@ export const AuthContextProvider = ({children}) => {
         const [user, setUser] = useState({})
         const [initialized, setInitialized] = useState(false)
         const [isProcessing, setIsProcessing] = useState(false)
-        const [error, setError] = useState("")
+        const [errors, setErrors] = useState({})
+        const [loginForm, setLoginForm] = useState({
+            email: "",
+            password: ""
+        })
+        const [registerForm, setRegisterForm] = useState({
+            email: "",
+            password: "",
+            passwordConfirm: ""
+       })
 
-        const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError}
+        const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, errors, setErrors, loginForm, setLoginForm, registerForm, setRegisterForm}
 
         return (
             <AuthContext.Provider value={authValue}>

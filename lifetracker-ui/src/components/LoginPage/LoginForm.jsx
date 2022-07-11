@@ -1,21 +1,19 @@
 import * as React from "react"
 import "../LoginPage/login.css"
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
 import apiClient from "../../services/apiClient"
-import {useState, useEffect} from "react"
+import {useEffect} from "react"
 import {useAuthContext} from "../../contexts/auth"
 
 export default function LoginForm(props) {
-    const {user, setUser} = useAuthContext()
+    
     //VARIABLES
     const navigate = useNavigate()
-    const [isProcessing, setIsProcessing] = useState(false)
-    const [errors, setErrors] = useState({});
-    const [form, setForm] = useState({
-        email: "",
-        password: ""
-    })
+    const {user, setUser} = useAuthContext()
+    const {isProcessing, setIsProcessing} = useAuthContext()
+    const {errors, setErrors} = useAuthContext()
+    const {loginForm, setLoginForm} = useAuthContext()
+
 
     //USE EFFECT HOOK
     useEffect(() => {
@@ -29,6 +27,7 @@ export default function LoginForm(props) {
 
     function handleOnChange(evt)
     {
+        setErrors((err) => ({...err, form: null}))
         if(evt.target.name === "email")
         {
             if(evt.target.value.indexOf("@") === -1)
@@ -41,22 +40,22 @@ export default function LoginForm(props) {
             }
         }
 
-        setForm((form) => ({...form, [evt.target.name]: evt.target.value}))
+        setLoginForm((form) => ({...form, [evt.target.name]: evt.target.value}))
     }
 
     async function handleOnSubmit(evt)
     {
         setIsProcessing(true)
         setErrors((err) => ({...err, email: null}))
+        setErrors((err) => ({...err, form: null}))
 
-        const {data, error} = await apiClient.loginUser({email: form.email, password: form.password})
+        const {data, error} = await apiClient.loginUser({email: loginForm.email, password: loginForm.password})
         if(error)
         {
                setErrors((err) => ({...err, form: "Invalid email/password combination"}))
         }
         if(data?.user)
         {
-                console.log("entered")
                setUser(data.user)
                apiClient.setToken(data.token)
         }
@@ -72,6 +71,7 @@ export default function LoginForm(props) {
 
             <div>
             <h3>Email</h3>
+            <h3>{errors.email}</h3>
             <input type="email" 
                    placeholder="Type in email..."
                    name="email"
